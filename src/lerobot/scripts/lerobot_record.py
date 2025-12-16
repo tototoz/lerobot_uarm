@@ -20,19 +20,49 @@ Example:
 ```shell
 lerobot-record \
     --robot.type=so100_follower \
-    --robot.port=/dev/tty.usbmodem58760431541 \
-    --robot.cameras="{laptop: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
-    --robot.id=black \
-    --dataset.repo_id=<my_username>/<my_dataset_name> \
+    --robot.port=/dev/ttyACM1 \
+    --robot.cameras="{top: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30},wrist: {type: opencv, index_or_path: 9, width: 640, height: 480, fps: 30}}" \
+    --robot.id=blue \
+    --display_data=false \
+    --dataset.repo_id=zh/eval_act_your_dataset \
+    --dataset.num_episodes=10 \
+    --dataset.single_task="Your task description" \
+    --policy.path=/home/zhq/lerobot/outputs/train/smolvla/checkpoints/000020/pretrained_model 
+
+lerobot-record \
+    --robot.type=fairino \
+    --robot.port=/dev/ttyACM0 \
+    --robot.id=blue \
+    --robot.cameras="{top: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30}, ceshi: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}}" \
+    --teleop.type=so100_leader \
+    --teleop.port=/dev/ttyACM2 \
+    --teleop.id=blue \
+    --display_data=false \
     --dataset.num_episodes=2 \
-    --dataset.single_task="Grab the cube" \
-    --display_data=true
-    # <- Teleop optional if you want to teleoperate to record or in between episodes with a policy \
-    # --teleop.type=so100_leader \
-    # --teleop.port=/dev/tty.usbmodem58760431551 \
-    # --teleop.id=blue \
-    # <- Policy optional if you want to record with a policy \
-    # --policy.path=${HF_USER}/my_policy \
+    --dataset.episode_time_s=15 \
+    --dataset.reset_time_s=10 \
+    --dataset.root=/home/zhq/lerobot/src/lerobot/datasets/new1 \
+    --dataset.repo_id=datasets/btt_pencil \
+    --dataset.single_task="Place the pink ball in the black box ." \
+    --dataset.push_to_hub=False \
+    --resume=false
+
+lerobot-record \
+    --robot.type=fairino1 \
+    --robot.id=black \
+    --robot.cameras="{top: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30},wrist: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}}" \
+    --teleop.type=uarm1 \
+    --teleop.id=black \
+    --display_data=false \
+    --dataset.num_episodes=60 \
+    --dataset.episode_time_s=25 \
+    --dataset.reset_time_s=5 \
+    --dataset.root=/home/zhq/lerobot/src/lerobot/datasets/insert_stick1\
+    --dataset.repo_id=datasets/btt_pencil \
+    --dataset.single_task="Insert the black stick into the black basket." \
+    --dataset.push_to_hub=False \
+    --resume=false
+    
 ```
 
 Example recording with bimanual so100:
@@ -100,6 +130,8 @@ from lerobot.robots import (  # noqa: F401
     omx_follower,
     so100_follower,
     so101_follower,
+    fairino,
+    fairino1,
 )
 from lerobot.teleoperators import (  # noqa: F401
     Teleoperator,
@@ -111,6 +143,8 @@ from lerobot.teleoperators import (  # noqa: F401
     omx_leader,
     so100_leader,
     so101_leader,
+    uarm,
+    uarm1,
 )
 from lerobot.teleoperators.keyboard.teleop_keyboard import KeyboardTeleop
 from lerobot.utils.constants import ACTION, OBS_STR

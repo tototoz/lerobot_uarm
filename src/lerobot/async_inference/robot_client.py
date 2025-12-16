@@ -14,21 +14,56 @@
 
 """
 Example command:
-```shell
-python src/lerobot/async_inference/robot_client.py \
+```shel
+
+python -m lerobot.async_inference.robot_client \
     --robot.type=so100_follower \
-    --robot.port=/dev/tty.usbmodem58760431541 \
-    --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 1920, height: 1080, fps: 30}}" \
-    --robot.id=black \
-    --task="dummy" \
-    --server_address=127.0.0.1:8080 \
-    --policy_type=act \
-    --pretrained_name_or_path=user/model \
-    --policy_device=mps \
+    --robot.port=/dev/ttyACM1 \
+    --robot.cameras="{image: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30},image2: {type: opencv, index_or_path: 8, width: 640, height: 480, fps: 30}}" \
+    --robot.id=blue \
+    --task="Please put the yellow ball into the black box." \
+    --server_address=192.168.3.17:8080 \
+    --policy_type=xvla \
+    --pretrained_name_or_path=/data/zhq/lerobot/outputs/xvla_training/checkpoints/last/pretrained_model \
+    --policy_device=cuda \
     --actions_per_chunk=50 \
     --chunk_size_threshold=0.5 \
     --aggregate_fn_name=weighted_average \
-    --debug_visualize_queue_size=True
+    --debug_visualize_queue_size=true
+
+python -m lerobot.async_inference.robot_client \
+    --robot.type=so100_follower \
+    --robot.port=/dev/ttyACM1 \
+    --robot.cameras="{top: {type: opencv, index_or_path: 8, width: 640, height: 480, fps: 30},laptop: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
+    --robot.id=blue \
+    --task="Please put the yellow ball into the black box." \
+    --server_address=192.168.3.17:8080 \
+    --policy_type=pi05 \
+    --pretrained_name_or_path=/data/zhq/lerobot/outputs/pi05_training/checkpoints/last/pretrained_model \
+    --policy_device=cuda \
+    --actions_per_chunk=50 \
+    --chunk_size_threshold=0.5 \
+    --aggregate_fn_name=weighted_average \
+    --debug_visualize_queue_size=true
+
+python -m lerobot.async_inference.robot_client \
+  --robot.type=so100_follower \
+  --robot.port=/dev/ttyACM1 \
+    --robot.cameras='{
+      top: {"type": "opencv", "index_or_path": 8, "width": 640, "height": 480, "fps": 30},
+      laptop: {"type": "opencv", "index_or_path": 0, "width": 640, "height": 480, "fps": 30}
+                      }' \
+  --robot.id=blue \
+  --task="Please put the yellow ball into the black box." \
+  --server_address=192.168.3.17:8080 \
+  --policy_type=smolvla \
+  --pretrained_name_or_path=/data/btt/lerobot_new_expri/outputs/train/pick_ball_expri/checkpoints/040000/pretrained_model \
+  --policy_device=cuda \
+  --actions_per_chunk=50 \
+  --chunk_size_threshold=0.5 \
+  --aggregate_fn_name=weighted_average \
+  --debug_visualize_queue_size=True
+
 ```
 """
 
@@ -57,6 +92,9 @@ from lerobot.robots import (  # noqa: F401
     omx_follower,
     so100_follower,
     so101_follower,
+    fairino,
+    fairino1,
+    fairino1_inference,
 )
 from lerobot.transport import (
     services_pb2,  # type: ignore
@@ -362,7 +400,6 @@ class RobotClient:
             # Get action from queue
             timed_action = self.action_queue.get_nowait()
         get_end = time.perf_counter() - get_start
-
         _performed_action = self.robot.send_action(
             self._action_tensor_to_action_dict(timed_action.get_action())
         )

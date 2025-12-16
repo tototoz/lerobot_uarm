@@ -12,3 +12,16 @@ https://arxiv.org/abs/2506.01844
   year={2025}
 }
 ```
+lerobot-train \
+  --dataset.repo_id=none \
+  --dataset.root=/home/zhq/lerobot/src/lerobot/datasets/6zi \
+  --policy.type=smolvla \
+  --output_dir=outputs/train/smolvla \
+  --job_name=act_your_dataset \
+  --policy.device=cuda \
+  --wandb.enable=false \
+  --policy.repo_id=none \
+  --policy.push_to_hub=false \
+  --steps=2000 \
+  --policy.training_time_rtc=true \
+  --policy.rtc_max_delay=10

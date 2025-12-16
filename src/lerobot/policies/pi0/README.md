@@ -47,3 +47,5 @@ If you use this work, please cite both **OpenPI** and the π₀ paper:
 ## License
 
 This port follows the **Apache 2.0 License**, consistent with the original [OpenPI repository](https://github.com/Physical-Intelligence/openpi).
+
+export HF_ENDPOINT=https://hf-mirror.com

@@ -20,8 +20,14 @@ Example:
 ```shell
 lerobot-calibrate \
     --teleop.type=so100_leader \
-    --teleop.port=/dev/tty.usbmodem58760431551 \
+    --teleop.port=/dev/ttyACM2 \
     --teleop.id=blue
+
+
+lerobot-calibrate \
+    --robot.type=so100_follower \
+    --robot.port=/dev/ttyACM1 \
+    --robot.id=blue
 ```
 """
 

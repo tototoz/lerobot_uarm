@@ -23,7 +23,6 @@ python -m lerobot.async_inference.policy_server \
      --obs_queue_timeout=1
 ```
 """
-
 import logging
 import pickle  # nosec
 import threading

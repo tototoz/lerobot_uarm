@@ -22,8 +22,8 @@ Example:
 ```shell
 lerobot-find-joint-limits \
   --robot.type=so100_follower \
-  --robot.port=/dev/tty.usbmodem58760432981 \
-  --robot.id=black \
+  --robot.port=/dev/ttyACM1 \
+  --robot.id=blue \
   --teleop.type=so100_leader \
   --teleop.port=/dev/tty.usbmodem58760434471 \
   --teleop.id=blue \

@@ -27,3 +27,7 @@ SUPPORTED_POLICIES = ["act", "smolvla", "diffusion", "tdmpc", "vqbet", "pi0", "p
 
 # TODO: Add all other robots
 SUPPORTED_ROBOTS = ["so100_follower", "so101_follower", "bi_so100_follower", "omx_follower"]
+SUPPORTED_POLICIES = ["act", "smolvla", "diffusion", "tdmpc", "vqbet", "pi0", "pi05", "xvla"]
+
+# TODO: Add all other robots
+SUPPORTED_ROBOTS = ["so100_follower", "so101_follower", "bi_so100_follower", "fairino","fairino1","fairino1_inference","omx_follower"]
