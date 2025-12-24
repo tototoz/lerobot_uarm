@@ -34,12 +34,12 @@ python -m lerobot.async_inference.robot_client \
 python -m lerobot.async_inference.robot_client \
     --robot.type=so100_follower \
     --robot.port=/dev/ttyACM1 \
-    --robot.cameras="{top: {type: opencv, index_or_path: 8, width: 640, height: 480, fps: 30},laptop: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
+    --robot.cameras="{top: {type: opencv, index_or_path: 8, width: 640, height: 480, fps: 30},laptop: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}}" \
     --robot.id=blue \
     --task="Please put the yellow ball into the black box." \
     --server_address=192.168.3.17:8080 \
-    --policy_type=pi05 \
-    --pretrained_name_or_path=/data/zhq/lerobot/outputs/pi05_training/checkpoints/last/pretrained_model \
+    --policy_type=pi0 \
+    --pretrained_name_or_path=/data/zhq/lerobot/outputs/pi0_training/checkpoints/last/pretrained_model \
     --policy_device=cuda \
     --actions_per_chunk=50 \
     --chunk_size_threshold=0.5 \
@@ -51,13 +51,13 @@ python -m lerobot.async_inference.robot_client \
   --robot.port=/dev/ttyACM1 \
     --robot.cameras='{
       top: {"type": "opencv", "index_or_path": 8, "width": 640, "height": 480, "fps": 30},
-      laptop: {"type": "opencv", "index_or_path": 0, "width": 640, "height": 480, "fps": 30}
+      laptop: {"type": "opencv", "index_or_path": 2, "width": 640, "height": 480, "fps": 30}
                       }' \
   --robot.id=blue \
   --task="Please put the yellow ball into the black box." \
   --server_address=192.168.3.17:8080 \
   --policy_type=smolvla \
-  --pretrained_name_or_path=/data/btt/lerobot_new_expri/outputs/train/pick_ball_expri/checkpoints/040000/pretrained_model \
+  --pretrained_name_or_path=/data/btt/lerobot_new_expri/outputs/train/pick_ball_expri_two/checkpoints/070000/pretrained_model \
   --policy_device=cuda \
   --actions_per_chunk=50 \
   --chunk_size_threshold=0.5 \
