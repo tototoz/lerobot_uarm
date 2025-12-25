@@ -38,8 +38,8 @@ python -m lerobot.async_inference.robot_client \
     --robot.id=blue \
     --task="Please put the yellow ball into the black box." \
     --server_address=192.168.3.17:8080 \
-    --policy_type=pi0 \
-    --pretrained_name_or_path=/data/zhq/lerobot/outputs/pi0_training/checkpoints/last/pretrained_model \
+    --policy_type=wall_x \
+    --pretrained_name_or_path=/data/zhq/lerobot/outputs/wallx_training/checkpoints/last/pretrained_model \
     --policy_device=cuda \
     --actions_per_chunk=50 \
     --chunk_size_threshold=0.5 \
@@ -57,7 +57,7 @@ python -m lerobot.async_inference.robot_client \
   --task="Please put the yellow ball into the black box." \
   --server_address=192.168.3.17:8080 \
   --policy_type=smolvla \
-  --pretrained_name_or_path=/data/btt/lerobot_new_expri/outputs/train/pick_ball_expri_two/checkpoints/070000/pretrained_model \
+  --pretrained_name_or_path=/data/btt/lerobot_new_expri/outputs/train/btt_zhuji_expri_222/checkpoints/090000/pretrained_model \
   --policy_device=cuda \
   --actions_per_chunk=50 \
   --chunk_size_threshold=0.5 \
