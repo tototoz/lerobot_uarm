@@ -44,6 +44,7 @@ from lerobot.teleoperators import (  # noqa: F401
     omx_leader,
     so100_leader,
     so101_leader,
+    dk1_leader,
 )
 
 COMPATIBLE_DEVICES = [

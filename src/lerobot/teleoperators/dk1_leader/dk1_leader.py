@@ -25,7 +25,7 @@ from lerobot.motors.feetech import (
 from lerobot.utils.errors import DeviceAlreadyConnectedError, DeviceNotConnectedError
 
 from ..teleoperator import Teleoperator
-from .config_so100_leader import SO100LeaderConfig
+from .config_dk1_leader import DK1LeaderConfig
 
 import numpy as np
 
