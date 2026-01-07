@@ -132,6 +132,7 @@ from lerobot.robots import (  # noqa: F401
     so101_follower,
     fairino,
     fairino1,
+    dk1_follower,
 )
 from lerobot.teleoperators import (  # noqa: F401
     Teleoperator,
@@ -145,6 +146,7 @@ from lerobot.teleoperators import (  # noqa: F401
     so101_leader,
     uarm,
     uarm1,
+    dk1_leader,
 )
 from lerobot.teleoperators.keyboard.teleop_keyboard import KeyboardTeleop
 from lerobot.utils.constants import ACTION, OBS_STR

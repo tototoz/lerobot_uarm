@@ -34,12 +34,12 @@ python -m lerobot.async_inference.robot_client \
 python -m lerobot.async_inference.robot_client \
     --robot.type=so100_follower \
     --robot.port=/dev/ttyACM1 \
-    --robot.cameras="{top: {type: opencv, index_or_path: 8, width: 640, height: 480, fps: 30},laptop: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}}" \
-    --robot.id=blue \
-    --task="Please put the yellow ball into the black box." \
+    --robot.cameras="{top: {type: opencv, index_or_path: 6, width: 640, height: 480, fps: 30},laptop: {type: opencv, index_or_path: 8, width: 640, height: 480, fps: 30}}" \
+    --robot.id=so100_follower_black \
+    --task="Please put the yellow cube  into the black box." \
     --server_address=192.168.3.17:8080 \
-    --policy_type=wall_x \
-    --pretrained_name_or_path=/data/zhq/lerobot/outputs/wallx_training/checkpoints/last/pretrained_model \
+    --policy_type=pi05 \
+    --pretrained_name_or_path=/data/zhq/lerobot/outputs/pi05_training/checkpoints/last/pretrained_model \
     --policy_device=cuda \
     --actions_per_chunk=50 \
     --chunk_size_threshold=0.5 \
