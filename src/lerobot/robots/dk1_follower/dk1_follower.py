@@ -29,7 +29,7 @@ from lerobot.utils.errors import DeviceAlreadyConnectedError, DeviceNotConnected
 
 from ..robot import Robot
 from ..utils import ensure_safe_goal_position
-from .config_so100_follower import SO100FollowerConfig
+from .config_dk1_follower import DK1FollowerConfig
 
 logger = logging.getLogger(__name__)
 
@@ -76,8 +76,8 @@ class DK1Follower(Robot):
         self.serial_device = None
         self.bus_connected = False
 
-        self.gripper_open_pos = 0.0
-        self.gripper_closed_pos = -4.7
+        self.gripper_open_pos = 0.25
+        self.gripper_closed_pos = 4.7
 
         self.cameras = make_cameras_from_configs(config.cameras)
 
@@ -157,11 +157,11 @@ class DK1Follower(Robot):
         # Open gripper and set zero position
         self.control.switchControlMode(
             self.motors["gripper"], Control_Type.VEL)
-        self.control.control_Vel(self.motors["gripper"], 10.0)
+        self.control.control_Vel(self.motors["gripper"], -10.0)
         while True:
             self.control.refresh_motor_status(self.motors["gripper"])
             tau = self.motors["gripper"].getTorque()
-            if tau > 1.2:
+            if abs(tau) > 1.2:
                 self.control.control_Vel(self.motors["gripper"], 0.0)
                 self.control.disable(self.motors["gripper"])
                 self.control.set_zero_position(self.motors["gripper"])
